@@ -7,7 +7,7 @@ uni={
         // console.log('length '+length);
         let newUni = uni[length-1];
         if(newUni=='')return false;
-        console.log('newuni'+newUni);
+        // console.log('newuni'+newUni);
         return newUni;
         console.log('new uni :'+newUni)
     },

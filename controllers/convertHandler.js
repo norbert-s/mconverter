@@ -13,13 +13,14 @@ units = {
     gal : 'gallons',
     l : 'liters'
 }
+
 function ConvertHandler() {
 
     this.getNum = function(input) {
         //false ot ad vissza a getNum vagy a szamot
         let num = splitNum(input);
         if(num=='' ){
-            console.log('false num'+num);
+            // console.log('false num'+num);
             return false;
         }
         else{
@@ -33,14 +34,14 @@ function ConvertHandler() {
 
     this.getUnit = function(input) {
         let unit = splitUni(input);
-        console.log('getunit unit'+unit);
+        // console.log('getunit unit'+unit);
         if(!unit)return false;
         //a valid booleant ad vissza
         let valid = isValid(unit);
         if(!valid)return false;
         // console.log(valid);
         if(valid)return unit;
-        console.log('return unit'+unit);
+        // console.log('return unit'+unit);
     };
 
     this.getReturnUnit = function(initUnit) {
@@ -52,15 +53,17 @@ function ConvertHandler() {
     };
 
     this.spellOutUnit = function(initUnit,returnUnit) {
+        console.log('iiui: '+initUnit);
+        console.log('ioui: '+returnUnit);
+        let init = units[initUnit];
+        console.log('init unit spelloutban'+init);
+        let returnU = units[returnUnit];
+        console.log(returnU);
+        let result = [init,returnU];
 
-        // let init = this.(initUnit);
-        // console.log('init unit'+init);
-        // let returnU = convertSpelling(returnUnit);
-        // console.log(returnU);
-        // var result= {1:this.init,2:this.returnU};
-        //
-        // return result;
+         return result;
     };
+
 
     this.convert = function(number,unit) {
         //milyen egyseg az eredeti
@@ -79,8 +82,11 @@ function ConvertHandler() {
         return result;
     };
 
-    this.getString = function(initNum, initUnit, returnNum, returnUnit, spellout1,spellout2) {
-        let string =  {"initNum":initNum,"initUnit":initUnit,"returnNum":returnNum,"returnUnit":returnUnit};
+    this.getString = function(initNum, initUnit, returnNum, returnUnit, ez) {
+        let numThis = initNum;
+        let rNum= returnNum;
+        let string =  {"initNum":numThis,"initUnit":initUnit,"returnNum":rNum,"returnUnit":returnUnit,"string":numThis+" "
+        +ez[0]+' converts to '+rNum+ " "+ez[1]};
 
         return string;
     // ,"string":`
@@ -95,7 +101,7 @@ module.exports = ConvertHandler;
 const pref = require('./pref');
 const uni = require('./uni');
 const convertUnits = require('./convertUnits');
-// const convertSpelling = require('./convertSpelling');
+const convertSpelling = require('./convertSpelling');
 const {splitNum,contains} = pref;
 const {splitUni,isValid} = uni;
 

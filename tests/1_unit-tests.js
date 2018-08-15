@@ -17,7 +17,7 @@ suite('Unit Tests', function(){
   
   suite('Function convertHandler.getNum(input)', function() {
     
-    test.only('Whole number input', function(done) {
+    test('Whole number input', function(done) {
       let input = '32KG';
       assert.equal(convertHandler.getNum(input),'32');
       done();

@@ -7,7 +7,7 @@ branches = {
     },
     dec(num){
         //console.log('dec'+num);
-        return num;
+        return num.toFixed(5);
     },
     frac(num){
         //console.log('frac'+num);
@@ -16,7 +16,7 @@ branches = {
         let newSecond=parseInt(num.slice(index+1,num.length));
         let newNum = newFirst / newSecond;
         //console.log('newnum : '+newNum);
-        return newNum;
+        return newNum.toFixed(5);
     },
     decFrac(num){
         //console.log('decFrac'+num);
@@ -27,7 +27,7 @@ branches = {
             let newFrac = parseInt(num.slice(indexOfFrac+1,num.length));
             let newNum = newBase / newFrac;
             //console.log('newnum : '+newNum);
-            return newNum;
+            return newNum.toFixed(5);
         }
         else if(indexOfFrac<indexOfDec){
             let newBase = parseInt(num.slice(0,indexOfFrac));
@@ -36,7 +36,7 @@ branches = {
             //console.log('newDec'+newDec);
             let newNum = newBase / newDec;
             //console.log('newnum : '+newNum);
-            return newNum;
+            return newNum.toFixed(5);
         }
 
     }
