@@ -2,3 +2,5 @@ node_modules/
 .idea/
 ./controller/convertSpelling.js
 .controller/convertSpelling.js
+package-lock.json
+.npmrc
