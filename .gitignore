@@ -1,0 +1,4 @@
+node_modules/
+.idea/
+./controller/convertSpelling.js
+.controller/convertSpelling.js
