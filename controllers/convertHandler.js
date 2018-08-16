@@ -11,7 +11,9 @@ units = {
     mi : 'miles',
     km : 'kilometers',
     gal : 'gallons',
-    l : 'liters'
+    l : 'liters',
+    L : 'liters'
+
 }
 
 function ConvertHandler() {
@@ -20,7 +22,6 @@ function ConvertHandler() {
         //false ot ad vissza a getNum vagy a szamot
         let num = splitNum(input);
         if(num=='' ){
-            // console.log('false num'+num);
             return false;
         }
         else{
@@ -34,51 +35,40 @@ function ConvertHandler() {
 
     this.getUnit = function(input) {
         let unit = splitUni(input);
-        // console.log('getunit unit'+unit);
-        if(!unit)return false;
-        //a valid booleant ad vissza
+        console.log('unit'+unit);
+        if(unit=='')return false;
         let valid = isValid(unit);
         if(!valid)return false;
-        // console.log(valid);
         if(valid)return unit;
-        // console.log('return unit'+unit);
     };
 
     this.getReturnUnit = function(initUnit) {
+        let _initUnit = initUnit;
         var input = ['gal','l','mi','km','lbs','kg'];
         var expect = ['l','gal','km','mi','kg','lbs'];
-        let index = input.indexOf(initUnit);
+        let index = input.indexOf(_initUnit);
         let result = expect[index];
         return result;
     };
 
     this.spellOutUnit = function(initUnit,returnUnit) {
-        console.log('iiui: '+initUnit);
-        console.log('ioui: '+returnUnit);
-        let init = units[initUnit];
-        console.log('init unit spelloutban'+init);
-        let returnU = units[returnUnit];
-        console.log(returnU);
-        let result = [init,returnU];
-
+        let _initUnit = initUnit;
+        let returnInitUnit = units[_initUnit];
+        let _returnUnit = returnUnit;
+        returnReturnUnit = units[_returnUnit];
+        let result = [returnInitUnit,returnReturnUnit];
+        console.log('spellout init and return '+result[0]+" "+result[1]);
          return result;
     };
 
 
     this.convert = function(number,unit) {
-        //milyen egyseg az eredeti
+        //ez oldja meg a konvertálást lowercasere
         let unitThis = unit.toLowerCase();
-        //console.log('unit this'+unitThis);
-        //milyen egyseg a kivant
         let returnUnit = this.getReturnUnit(unitThis);
-        //console.log('return unit'+returnUnit);
-        // let array = [3.78541,0.453592,1.60934,0.621371192,2.20462262,0.264172052];
         let howTo = convertUnits[unitThis];
-        //console.log('how to'+howTo);
-
         let result = (parseFloat(number *howTo));
         result = result.toFixed(5)*1;
-        //console.log(`ez a ${unitThis}rol convert to ${returnUnit}: ${result}`);
         return result;
     };
 
@@ -87,13 +77,8 @@ function ConvertHandler() {
         let rNum= returnNum;
         let string =  {"initNum":numThis,"initUnit":initUnit,"returnNum":rNum,"returnUnit":returnUnit,"string":numThis+" "
         +ez[0]+' converts to '+rNum+ " "+ez[1]};
-
         return string;
-    // ,"string":`
-    //     ${initNum} ${spellOut1} converts to ${returnNum} ${spellout2}`
     };
-
-
 }
 
 module.exports = ConvertHandler;
@@ -101,11 +86,6 @@ module.exports = ConvertHandler;
 const pref = require('./pref');
 const uni = require('./uni');
 const convertUnits = require('./convertUnits');
-const convertSpelling = require('./convertSpelling');
 const {splitNum,contains} = pref;
 const {splitUni,isValid} = uni;
 
-// const {convertUnits} = convertUnit;
-
-// let branches = require('./branches');
-// let {base,dec,frac,decFrac} = branches;

@@ -9,13 +9,37 @@
 var chai = require('chai');
 var assert = chai.assert;
 var ConvertHandler = require('../controllers/convertHandler.js');
-
+let pref = require('../controllers/pref.js');
 var convertHandler = new ConvertHandler();
-
+let {splitNum,contains} = pref;
+let uni = require('../controllers/uni.js');
+let {splitUni} =uni;
 
 suite('Unit Tests', function(){
   
   suite('Function convertHandler.getNum(input)', function() {
+
+      test('splitnumber tested with invalid numbers',done=>{
+          let input = '32li33l';
+            assert.equal(splitNum(input),32)
+          done()
+      })
+      test('uni tested with invalid values',done=>{
+          let input = '32li33l';
+          assert.equal(splitUni(input),'li')
+          done()
+      })
+      test('uni tested with invalid values',done=>{
+          let input = '553214k33kg';
+          assert.equal(splitUni(input),'k')
+          done()
+      })
+      // test('uni tested with invalid values',done=>{
+      //     let input = 'kg5';
+      //     assert.equal(splitUni(input),'k')
+      //     done()
+      // })
+
     
     test('Whole number input', function(done) {
       let input = '32KG';
@@ -42,10 +66,35 @@ suite('Unit Tests', function(){
         // assert.equal(convertHandler.getNum(input),output);
         let input = '32/5.6L'
         let output = 32/(5.6);
-        assert.equal(convertHandler.getNum(input),output);
+        let resultka = parseFloat(convertHandler.getNum(input));
+        // assert.equal(),output);
+        assert.approximately(resultka,output,0.1); //0.1 tolerance
         done();
 
     });
+      // test('Fractional Input another w/ Decimal', function(done) {
+      //
+      //     // assert.equal(convertHandler.getNum(input),output);
+      //     let input = '32.5/6L'
+      //     let output = (32.5)/6;
+      //     let resultka = parseFloat(convertHandler.getNum(input));
+      //     // assert.equal(),output);
+      //     assert.approximately(resultka,output,0.1); //0.1 tolerance
+      //     done();
+      //
+      // });
+      // test('Fractional Input another w/ Decimal', function(done) {
+      //
+      //     // assert.equal(convertHandler.getNum(input),output);
+      //     let input = '32/5L'
+      //     let output = 32/5;
+      //     let resultka = convertHandler.getNum(input);
+      //     // assert.equal(),output);
+      //     assert.approximately(resultka,output,0.1); //0.1 tolerance
+      //     done();
+      //
+      // });
+
     
     test('Invalid Input (double fraction)', function(done) {
         let input = '32.2/1.2kg';
@@ -69,6 +118,8 @@ suite('Unit Tests', function(){
           var input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
           input.forEach(function(ele) {
             assert.equal(convertHandler.getUnit(ele),ele)
+                console.log('converthandler ele'+convertHandler.getUnit(ele));
+                console.log(ele);
           });
           done();
       });
@@ -97,6 +148,15 @@ suite('Unit Tests', function(){
   suite('Function convertHandler.spellOutUnit(unit)', function() {
     
     test('For Each Valid Unit Inputs', function(done) {
+        var input = ['gal','l','mi','km','lbs','kg'];
+        var expect = [ 'gallons','liters','miles','kilometers','pounds','kilograms',];
+        input.forEach((value,i)=>{
+            let returnUnit = convertHandler.getReturnUnit(value);
+            // console.log('return unit test' +returnUnit);
+            let spellOut = convertHandler.spellOutUnit(value,returnUnit);
+            // console.log('test spellout'+spellOut);
+            assert.equal(spellOut[0],expect[i])
+        })
       //see above example for hint
       done();
     });

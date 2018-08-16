@@ -4,10 +4,7 @@ pref = {
     splitNum(num){
         num = num.split(/[a-zA-Z]/);
         num = num[0];
-        console.log(num);
-        console.log('split num : '+num);
         return num;
-
     },
     contains(num){
         //elso
@@ -35,7 +32,6 @@ pref = {
             return false;
         }
     }
-
 }
 
 

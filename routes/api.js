@@ -25,14 +25,14 @@ module.exports = function (app) {
             console.log('api initUnit' + initUnit);
             if (!initNum && !initUnit) {
                 console.log('invalid num');
-                res.json({"number and unit": "invalid number and unit"});
+                res.json({"string": "invalid number and unit"});
             }
-            if (!initNum) {
-                res.json({"number": "invalid number"});
+            if ((!initNum || initNum ==undefined)&&initUnit!=undefined) {
+                res.json({"string": "invalid number"});
 
             }
-            if (!initUnit) {
-                res.json({"unit": "invalid unit"});
+            if (!initUnit || initNum ==undefined && initNum!=undefined) {
+                res.json({"string": "invalid unit"});
 
             }
             let returnNum = convertHandler.convert(initNum, initUnit);
@@ -45,5 +45,6 @@ module.exports = function (app) {
             let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit,ez);
             console.log(toString);
             if (initNum && initUnit) res.json(toString);
+            console.log('nem jo valasz')
         });
 }
