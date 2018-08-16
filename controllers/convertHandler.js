@@ -35,7 +35,7 @@ function ConvertHandler() {
 
     this.getUnit = function(input) {
         let unit = splitUni(input);
-        console.log('unit'+unit);
+        // console.log('unit'+unit);
         if(unit=='')return false;
         let valid = isValid(unit);
         if(!valid)return false;
@@ -57,7 +57,7 @@ function ConvertHandler() {
         let _returnUnit = returnUnit;
         returnReturnUnit = units[_returnUnit];
         let result = [returnInitUnit,returnReturnUnit];
-        console.log('spellout init and return '+result[0]+" "+result[1]);
+        // console.log('spellout init and return '+result[0]+" "+result[1]);
          return result;
     };
 

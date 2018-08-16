@@ -15,7 +15,7 @@ let {splitNum,contains} = pref;
 let uni = require('../controllers/uni.js');
 let {splitUni} =uni;
 
-suite('Unit Tests', function(){
+suite.only('Unit Tests', function(){
   
   suite('Function convertHandler.getNum(input)', function() {
 
@@ -61,9 +61,7 @@ suite('Unit Tests', function(){
     });
     
     test('Fractional Input w/ Decimal', function(done) {
-        // let input = '32.5/6L'
-        // let output = (32.5)/6;
-        // assert.equal(convertHandler.getNum(input),output);
+
         let input = '32/5.6L'
         let output = 32/(5.6);
         let resultka = parseFloat(convertHandler.getNum(input));
@@ -115,11 +113,11 @@ suite('Unit Tests', function(){
   suite('Function convertHandler.getUnit(input)', function() {
 
       test('For Each Valid Unit Inputs first', function(done) {
-          var input = ['gal','l','mi','km','lbs','kg','GAL','L','MI','KM','LBS','KG'];
+          var input = ['gal','l','mi','km','lbs','kg'];
           input.forEach(function(ele) {
             assert.equal(convertHandler.getUnit(ele),ele)
-                console.log('converthandler ele'+convertHandler.getUnit(ele));
-                console.log(ele);
+                // console.log('converthandler ele'+convertHandler.getUnit(ele));
+                // console.log(ele);
           });
           done();
       });

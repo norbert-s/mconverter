@@ -8,28 +8,35 @@ pref = {
     },
     contains(num){
         //elso
-        if(!num.includes('/') && !num.includes('.')) {return base(num)}
-        else if (num.includes('.')|| num.includes('/')){
-            let _dec=0;
-            let _frac=0;
-            for (let value of num)
-            {
-                if (value === '.') {
-                    _dec++
+        let regex= /[^=[0-9a-zA-Z./]]*/g;
+        let matching = regex.test(num);
+        if(matching){
+            return false;
+        }
+        else{
+            if(!num.includes('/') && !num.includes('.')) {return base(num)}
+            else if (num.includes('.')|| num.includes('/')){
+                let _dec=0;
+                let _frac=0;
+                for (let value of num)
+                {
+                    if (value === '.') {
+                        _dec++
+                    }
+                    else if (value === '/') {
+                        _frac++
+                    }
                 }
-                else if (value === '/') {
-                    _frac++
+                if(_dec<=1 && _frac===0)return dec(num);
+                else if(_dec===0 && _frac===1)return frac(num);
+                else if(_dec===1 && _frac===1)return decFrac(num);
+                else if(_dec>1 || _frac>1){
+                    return false;
                 }
             }
-            if(_dec<=1 && _frac===0)return dec(num);
-            else if(_dec===0 && _frac===1)return frac(num);
-            else if(_dec===1 && _frac===1)return decFrac(num);
-            else if(_dec>1 || _frac>1){
+            else if(num===''||num==undefined){
                 return false;
             }
-        }
-        else if(num===''||num==undefined){
-            return false;
         }
     }
 }

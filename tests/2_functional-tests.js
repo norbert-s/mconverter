@@ -22,12 +22,12 @@ suite.only('Functional Tests', function() {
       test('Convert 10L (valid input)', function(done) {
        chai.request(server)
         .get('/api/convert')
-        .query({input: '10L'})
+        .query({input: '10l'})
 
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 10);
-          assert.equal(res.body.initUnit, 'L');
+          assert.equal(res.body.initUnit, 'l');
           assert.approximately(res.body.returnNum, 2.64172, 0.1);
           assert.equal(res.body.returnUnit, 'gal');
           done();
@@ -45,7 +45,7 @@ suite.only('Functional Tests', function() {
                     assert.equal(res.body.initUnit, undefined );
                     // assert.approximately(res.body.returnNum, 2.64172, 0.1);
                     assert.equal(res.body['string'], 'invalid unit');
-                    console.log('messgae :'+res.body.string);
+                    // console.log('messgae :'+res.body.string);
                     done();
                 });
 
@@ -63,13 +63,10 @@ suite.only('Functional Tests', function() {
                   assert.equal(res.body.initUnit, undefined );
                   assert.equal(res.body.returnNum, undefined );
                   assert.equal(res.body["string"], 'invalid number');
-                  console.log('messgae :'+res.body["string"]);
+                  // console.log('messgae :'+res.body["string"]);
                   done();
               });
-
-
       });
-
       });  
       
       test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function(done) {
@@ -83,10 +80,9 @@ suite.only('Functional Tests', function() {
                   assert.equal(res.body.initUnit, undefined );
                   assert.equal(res.body.returnNum, undefined );
                   assert.equal(res.body["string"], 'invalid number and unit');
-                  console.log('messgae :'+res.body["string"]);
+                  // console.log('messgae :'+res.body["string"]);
                   done();
               });
-
       });
       
       test('Convert kg (no number)', function(done) {
@@ -100,10 +96,9 @@ suite.only('Functional Tests', function() {
                   assert.equal(res.body.initUnit, undefined );
                   assert.equal(res.body.returnNum, undefined );
                   assert.equal(res.body["string"], 'invalid number');
-                  console.log('messgae :'+res.body["string"]);
+                  // console.log('messgae :'+res.body["string"]);
                   done();
               });
-
       });
       
     });
@@ -118,13 +113,8 @@ suite.only('Functional Tests', function() {
                   assert.equal(res.body.initUnit, undefined );
                   // assert.approximately(res.body.returnNum, 2.64172, 0.1);
                   assert.equal(res.body["string"], 'invalid number');
-                  console.log('messgae :'+res.body["string"]);
+                  // console.log('messgae :'+res.body["string"]);
                   done();
               });
-
-
       });
-
-
-
 });
