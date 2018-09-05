@@ -9,7 +9,9 @@
 ----------------------
 update:25tests passing
 Just realised I missed to have implemented this : "but if nothing is provided it will default to 1"
--this is a problem, because it would overwrite a few things, and therefore it remains unchanged for now
+-Because the whole evaluation process of "num" and "unit" should be rewritten in order to make it
+work as described above, for now it will remain unchanged
+
 
 
 
