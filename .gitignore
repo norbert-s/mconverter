@@ -4,3 +4,4 @@ node_modules/
 .controller/convertSpelling.js
 package-lock.json
 .npmrc
+.env
