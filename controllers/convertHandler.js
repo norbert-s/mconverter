@@ -11,7 +11,6 @@ units = {
     mi : 'miles',
     km : 'kilometers',
     gal : 'gallons',
-    l : 'liters',
     L : 'liters'
 
 }
@@ -20,7 +19,15 @@ function ConvertHandler() {
 
     this.getNum = function(input) {
         //false ot ad vissza a getNum vagy a szamot
-        let num = splitNum(input);
+        let num;
+        if(input=='L'||input=='gal'||input=='kg'||input=='lbs'||input=='mi'||input=='km'){
+            console.log('ez az ');
+            num = 1;
+        }
+        else{
+            num = splitNum(input);
+        }
+
         if(num=='' ){
             return false;
         }
@@ -44,8 +51,8 @@ function ConvertHandler() {
 
     this.getReturnUnit = function(initUnit) {
         let _initUnit = initUnit;
-        var input = ['gal','l','mi','km','lbs','kg'];
-        var expect = ['l','gal','km','mi','kg','lbs'];
+        var input = ['gal','L','mi','km','lbs','kg'];
+        var expect = ['L','gal','km','mi','kg','lbs'];
         let index = input.indexOf(_initUnit);
         let result = expect[index];
         return result;
@@ -64,7 +71,7 @@ function ConvertHandler() {
 
     this.convert = function(number,unit) {
         //ez oldja meg a konvertálást lowercasere
-        let unitThis = unit.toLowerCase();
+        let unitThis = unit;
         let returnUnit = this.getReturnUnit(unitThis);
         let howTo = convertUnits[unitThis];
         let result = (parseFloat(number *howTo));

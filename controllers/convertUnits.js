@@ -3,9 +3,10 @@ convertUnits={
     gal : 3.78541,
     lbs : 0.453592,
     mi : 1.609344,
-    l : 0.264172052,
+    L : 0.264172052,
     kg : 2.20462262,
-    km : 0.621371192
+    km : 0.621371192,
+
 }
 
 module.exports = convertUnits;

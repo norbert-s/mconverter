@@ -70,28 +70,17 @@ suite.only('Unit Tests', function(){
         done();
 
     });
-      // test('Fractional Input another w/ Decimal', function(done) {
-      //
-      //     // assert.equal(convertHandler.getNum(input),output);
-      //     let input = '32.5/6L'
-      //     let output = (32.5)/6;
-      //     let resultka = parseFloat(convertHandler.getNum(input));
-      //     // assert.equal(),output);
-      //     assert.approximately(resultka,output,0.1); //0.1 tolerance
-      //     done();
-      //
-      // });
-      // test('Fractional Input another w/ Decimal', function(done) {
-      //
-      //     // assert.equal(convertHandler.getNum(input),output);
-      //     let input = '32/5L'
-      //     let output = 32/5;
-      //     let resultka = convertHandler.getNum(input);
-      //     // assert.equal(),output);
-      //     assert.approximately(resultka,output,0.1); //0.1 tolerance
-      //     done();
-      //
-      // });
+      test('Fractional Input another w/ Decimal', function(done) {
+
+          // assert.equal(convertHandler.getNum(input),output);
+          let input = '32.5/6L'
+          let output = (32.5)/6;
+          let resultka = parseFloat(convertHandler.getNum(input));
+          // assert.equal(),output);
+          assert.approximately(resultka,output,0.1); //0.1 tolerance
+          done();
+
+      });
 
     
     test('Invalid Input (double fraction)', function(done) {
@@ -101,19 +90,18 @@ suite.only('Unit Tests', function(){
 
     });
     
-    test('No Numerical Input', function(done) {
-        let input = 'kg';
-        assert.equal(convertHandler.getNum(input),false)
-        done();
-      //done();
-    }); 
+    // test('No Numerical Input, it must evaluate as correct', function(done) {
+    //     let input = 'kg';
+    //     assert.equal(convertHandler.getNum(input),false)
+    //     done();
+    // });
     
   });
   //---------------------------------UNITS---------------------------------------------------------------
   suite('Function convertHandler.getUnit(input)', function() {
 
       test('For Each Valid Unit Inputs first', function(done) {
-          var input = ['gal','l','mi','km','lbs','kg'];
+          var input = ['gal','L','mi','km','lbs','kg'];
           input.forEach(function(ele) {
             assert.equal(convertHandler.getUnit(ele),ele)
                 // console.log('converthandler ele'+convertHandler.getUnit(ele));
@@ -134,8 +122,8 @@ suite.only('Unit Tests', function(){
   
   suite('Function convertHandler.getReturnUnit(initUnit)', function() {
     test('For Each Valid Unit Inputs', function(done) {
-      var input = ['gal','l','mi','km','lbs','kg'];
-      var expect = ['l','gal','km','mi','kg','lbs'];
+      var input = ['gal','L','mi','km','lbs','kg'];
+      var expect = ['L','gal','km','mi','kg','lbs'];
       input.forEach(function(ele, i) {
         assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
       });
@@ -146,7 +134,7 @@ suite.only('Unit Tests', function(){
   suite('Function convertHandler.spellOutUnit(unit)', function() {
     
     test('For Each Valid Unit Inputs', function(done) {
-        var input = ['gal','l','mi','km','lbs','kg'];
+        var input = ['gal','L','mi','km','lbs','kg'];
         var expect = [ 'gallons','liters','miles','kilometers','pounds','kilograms',];
         input.forEach((value,i)=>{
             let returnUnit = convertHandler.getReturnUnit(value);
@@ -184,8 +172,8 @@ suite.only('Unit Tests', function(){
         done();
     });
     
-    test('Km to Mi', function(done) {
-        var input = [5, 'KM'];
+    test('km to mi', function(done) {
+        var input = [5, 'km'];
         var expected = 3.106855;
         assert.approximately(convertHandler.convert(input[0],input[1]),expected,0.1); //0.1 tolerance
         done();

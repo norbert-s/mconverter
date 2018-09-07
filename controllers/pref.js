@@ -10,9 +10,11 @@ pref = {
         //elso
         let regex= /[^=[0-9a-zA-Z./]]*/g;
         let matching = regex.test(num);
+        num = num.toString();
         if(matching){
             return false;
         }
+
         else{
             if(!num.includes('/') && !num.includes('.')) {return base(num)}
             else if (num.includes('.')|| num.includes('/')){

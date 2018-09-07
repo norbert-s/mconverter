@@ -22,12 +22,12 @@ suite.only('Functional Tests', function() {
       test('Convert 10L (valid input)', function(done) {
        chai.request(server)
         .get('/api/convert')
-        .query({input: '10l'})
+        .query({input: '10L'})
 
         .end(function(err, res){
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 10);
-          assert.equal(res.body.initUnit, 'l');
+          assert.equal(res.body.initUnit, 'L');
           assert.approximately(res.body.returnNum, 2.64172, 0.1);
           assert.equal(res.body.returnUnit, 'gal');
           done();
@@ -85,22 +85,7 @@ suite.only('Functional Tests', function() {
               });
       });
       
-      test('Convert kg (no number)', function(done) {
-          chai.request(server)
-              .get('/api/convert')
-              .query({input: 'kg'})
 
-              .end(function(err, res){
-                  assert.equal(res.status, 200);
-                  assert.equal(res.body.initNum, undefined);
-                  assert.equal(res.body.initUnit, undefined );
-                  assert.equal(res.body.returnNum, undefined );
-                  assert.equal(res.body["string"], 'invalid number');
-                  // console.log('messgae :'+res.body["string"]);
-                  done();
-              });
-      });
-      
     });
       test('Convert kg5 (invalid input unit)', function(done) {
           chai.request(server)
@@ -117,4 +102,20 @@ suite.only('Functional Tests', function() {
                   done();
               });
       });
+    test('Convert kg (no number, it must evaluate as correct)', function(done) {
+        chai.request(server)
+            .get('/api/convert')
+            .query({input: 'kg'})
+
+            .end(function(err, res){
+                assert.equal(res.status, 200);
+                assert.equal(res.body.initNum, 1);
+                assert.equal(res.body.initUnit, 'kg' );
+                assert.equal(res.body.returnNum, 2.20462);
+                // assert.equal(res.body["string"], 'invalid number');
+                // console.log('messgae :'+res.body["string"]);
+                done();
+            });
+    });
+
 });
